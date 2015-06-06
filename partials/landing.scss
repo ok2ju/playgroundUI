@@ -1,0 +1,128 @@
+@import "bourbon/bourbon.scss";
+
+@import "partials/variables";
+
+@import "partials/mixins"; 
+
+@import "partials/layout";
+
+@import url("http://fonts.googleapis.com/css?family=Roboto");
+@import url("http://fonts.googleapis.com/css?family=Amatic+SC:700");
+
+*{margin: 0; padding: 0;}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	font: {
+		size: 100%;
+		family: $primary-font1;
+	}
+}
+
+.main {
+	background-image: url('../img/bg.jpg');
+	background-size: cover;
+	height: 100%;
+}
+
+.overlay {
+	background: rgba(0, 0, 0, .5);
+	height: 100%;
+}
+
+.form-container {
+	position: absolute;
+	width: 328px;
+	@include center(xy);
+}
+
+.login-form {
+	color: #fff;
+	text-align: center;
+
+	h1 {
+		font-family: 'Amatic SC', cursive;
+		font-size: 83px;
+	}
+
+	p {
+		margin-top: 20px;
+	}
+
+	label {
+		width: 75px;
+		display: inline-block;
+		text-align: right;
+		padding-right: 20px;
+	}
+
+	input {
+		width: 160px;
+	}
+
+	.form-input {
+		background: none;
+		border: none;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.87);
+		color: rgba(255, 255, 255, 0.87);
+		font-size: 14px;
+	}
+
+	.form-input:focus{
+		outline: none;
+	}
+
+	input[type=submit] {
+		width: 100px;
+		height: 27px;
+		border: none;
+		background-color: #81b06c;
+		color: rgba(255, 255, 255, 0.87);
+		border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+		margin-top: 30px;
+		cursor: pointer;
+	}
+
+	input[type=submit]:focus {
+		outline: none;
+	}
+}
+
+.cd-error-message {
+		display: inline-block;
+		position: absolute;
+		left: 35px;
+		bottom: -50px;
+		background: rgba($red, .9);
+		padding: .8em;
+		z-index: 2;
+		color: #FFF;
+		@include font-size(13px);
+
+		/* prevent click and touch events */
+		pointer-events: none;
+
+		visibility: hidden;
+		opacity: 0;
+
+		@include transition(opacity .2s 0, visibility 0 .2s);
+
+		&::after {
+			/* triangle */
+			content: '';
+			position: absolute;
+			left: 55px;
+			bottom: 100%;
+			@include triangle(16px, rgba($red, .9), up);
+		}
+
+		&.is-visible {
+			opacity: 1;
+			visibility: visible;
+
+			@include transition(opacity .2s 0, visibility 0 0);
+		}
+	}

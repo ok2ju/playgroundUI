@@ -1,0 +1,262 @@
+input, textarea {
+	font-family: $primary-font1;
+	@include font-size(16px);
+
+	&::-ms-clear {
+    	display: none;
+	}
+}
+
+.cd-user-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba($color-1, .9);
+	z-index: $modal-zindex;
+	overflow-y: auto;
+	cursor: pointer;
+
+	visibility: hidden;
+	opacity: 0;
+	@include transition(opacity .3s 0, visibility 0 .3s);
+
+	&.is-visible {
+		visibility: visible;
+		opacity: 1;
+
+		@include transition(opacity .3s 0, visibility 0 0);
+
+		.cd-user-modal-container {
+			@include transform(translateY(0));
+		}
+	}
+}
+
+.cd-user-modal-container {
+	position: relative;
+	width: 90%;
+	max-width: 450px;
+	background: #FFF;
+	margin: 3em auto 4em;
+	cursor: auto;
+	@include transform(translateY(-30px));
+
+	@include transition-property (transform);
+	@include transition-duration(.3s);
+
+	.cd-switcher {
+		@include clearfix;
+		list-style: none;
+		padding: 0;
+
+		.angle-wrap {
+			padding: 0;
+			display: block;
+			padding: 0;
+		}
+
+		.angle{
+			background: url("../img/angle.svg") no-repeat center center;
+			width: 50px;
+			height: 60px;
+			position: absolute;
+			background-size: 95px;
+			top: -6px;
+			left: -1px;
+		}
+
+		li {
+			font-weight: bold;
+			padding: 20px 20px 0px 20px;
+			text-align: center;
+			color: #000;
+		}
+	}
+
+	@include MQ(S) {
+		margin: 4em auto;
+
+		.cd-switcher a {
+			height: 70px;
+			line-height: 70px;
+		}
+	}
+}
+
+.cd-form {
+	padding: 1.4em;
+
+	.fieldset {
+		position: relative;
+		margin: 1.4em 0;
+
+		.title-name {
+			width: 20%;
+			display: inline-block;
+			vertical-align: bottom;
+		}
+
+		.select-menu {
+			width: 77%;
+			border-color: rgba(0, 0, 0, 0.5);
+		}
+
+		.time-inherit {
+			width: inherit;
+		}
+
+		.event-time {
+			margin-left: 20px;
+		}
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		.time-input {
+			width: 25px;
+		}
+	}
+
+	.create-btn {
+		text-align: center;
+		width: 100%;
+	}
+
+	label {
+		@include font-size(14px);
+
+		&.image-replace {
+			/* replace text with an icon */
+			display: inline-block;
+			position: absolute;
+			left: 15px;
+			@include center(y);
+			height: 20px;
+			width: 20px;
+
+			overflow: hidden;
+			text-indent: 100%;
+			white-space: nowrap;
+			color: transparent;
+			text-shadow: none;
+
+			background-repeat: no-repeat;
+			background-position: 50% 0;
+		}
+	}
+
+	input {
+		margin: 0;
+		padding: 0;
+
+		&.full-width {
+			width: 77%;
+		}
+
+		&.has-border {
+			border: none;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+			@include appearance(none);
+
+			&:focus {
+				border-color: $color-1;
+				outline: none;
+			}
+		}
+
+		&[type=submit] {
+			padding: 16px 0;
+			cursor: pointer;
+			background: $anton-color-top;
+			color: #FFF;
+			border: none;
+			@include appearance(none);
+			border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+
+			.no-touch &:hover, .no-touch &:focus {
+				outline: none;
+			}
+		}
+	}
+
+	@include MQ(S) {
+		padding: 2em;
+
+		.fieldset {
+
+			&:first-child {
+				margin-top: 0;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		input.has-padding {
+			padding: 10px 20px 10px 10px;
+		}
+
+		input[type=submit] {
+			padding: 10px 0;
+		}
+	}
+}
+
+.cd-form-message {
+	padding: 1.4em 1.4em 0;
+	@include font-size(14px);
+	line-height: 1.4;
+	text-align: center;
+
+	@include MQ(S) {
+		padding: 2em 2em 0;
+	}
+}
+
+.cd-form-bottom-message {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: -30px;
+	text-align: center;
+	@include font-size(14px);
+
+	a {
+		color: #FFF;
+		text-decoration: underline;
+	}
+}
+
+.cd-close-form {
+	/* form X button on top right */
+	display: block;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	right: 0;
+	top: -40px;
+	background: url('../img/cd-icon-close.svg') no-repeat center center;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+
+	@include MQ(L) {
+		display: none;
+	}
+}
+
+#cd-login, #cd-signup, #cd-reset-password {
+	display: none;
+}
+
+#cd-login.is-selected, #cd-signup.is-selected, #cd-reset-password.is-selected {
+	display: block;
+}
